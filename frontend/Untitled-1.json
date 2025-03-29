@@ -1,0 +1,309 @@
+{
+	"Id": "fd2f5ed019fed3885e5fba825c5deb64d5232ad9d7197f8b8ac5b77162ecadc4",
+	"Created": "2025-02-07T12:35:11.683268003Z",
+	"Path": "/bin/sh",
+	"Args": [
+		"-c",
+		"pipenv run gunicorn     -k uvicorn.workers.UvicornWorker     bracket.app:app     --bind 0.0.0.0:8400     --workers 1"
+	],
+	"State": {
+		"Status": "running",
+		"Running": true,
+		"Paused": false,
+		"Restarting": false,
+		"OOMKilled": false,
+		"Dead": false,
+		"Pid": 1658,
+		"ExitCode": 0,
+		"Error": "",
+		"StartedAt": "2025-02-07T13:55:20.661371896Z",
+		"FinishedAt": "2025-02-07T13:55:12.103936179Z",
+		"Health": {
+			"Status": "unhealthy",
+			"FailingStreak": 96,
+			"Log": [
+				{
+					"Start": "2025-02-07T14:18:24.915099594Z",
+					"End": "2025-02-07T14:18:24.934764525Z",
+					"ExitCode": 1,
+					"Output": "Connecting to localhost:8400 ([::1]:8400)\nwget: can't connect to remote host: Connection refused\n"
+				},
+				{
+					"Start": "2025-02-07T14:18:39.935774015Z",
+					"End": "2025-02-07T14:18:39.956530274Z",
+					"ExitCode": 1,
+					"Output": "Connecting to localhost:8400 ([::1]:8400)\nwget: can't connect to remote host: Connection refused\n"
+				},
+				{
+					"Start": "2025-02-07T14:18:54.955188567Z",
+					"End": "2025-02-07T14:18:54.973669943Z",
+					"ExitCode": 1,
+					"Output": "Connecting to localhost:8400 ([::1]:8400)\nwget: can't connect to remote host: Connection refused\n"
+				},
+				{
+					"Start": "2025-02-07T14:19:09.974926462Z",
+					"End": "2025-02-07T14:19:09.995376861Z",
+					"ExitCode": 1,
+					"Output": "Connecting to localhost:8400 ([::1]:8400)\nwget: can't connect to remote host: Connection refused\n"
+				},
+				{
+					"Start": "2025-02-07T14:19:27.164460384Z",
+					"End": "2025-02-07T14:19:27.192658423Z",
+					"ExitCode": 1,
+					"Output": "Connecting to localhost:8400 ([::1]:8400)\nwget: can't connect to remote host: Connection refused\n"
+				}
+			]
+		}
+	},
+	"Image": "sha256:77d5b4ea3c3345e07b02bcd6c7aa0534c4f9b4cdcee2842445e42859a4898abd",
+	"ResolvConfPath": "/var/lib/docker/containers/fd2f5ed019fed3885e5fba825c5deb64d5232ad9d7197f8b8ac5b77162ecadc4/resolv.conf",
+	"HostnamePath": "/var/lib/docker/containers/fd2f5ed019fed3885e5fba825c5deb64d5232ad9d7197f8b8ac5b77162ecadc4/hostname",
+	"HostsPath": "/var/lib/docker/containers/fd2f5ed019fed3885e5fba825c5deb64d5232ad9d7197f8b8ac5b77162ecadc4/hosts",
+	"LogPath": "/var/lib/docker/containers/fd2f5ed019fed3885e5fba825c5deb64d5232ad9d7197f8b8ac5b77162ecadc4/fd2f5ed019fed3885e5fba825c5deb64d5232ad9d7197f8b8ac5b77162ecadc4-json.log",
+	"Name": "/bracket-backend",
+	"RestartCount": 0,
+	"Driver": "overlayfs",
+	"Platform": "linux",
+	"MountLabel": "",
+	"ProcessLabel": "",
+	"AppArmorProfile": "",
+	"ExecIDs": null,
+	"HostConfig": {
+		"Binds": [
+			"C:\\Users\\Ryan\\Documents\\Development\\bracket\\backend\\static:/app/static:rw"
+		],
+		"ContainerIDFile": "",
+		"LogConfig": {
+			"Type": "json-file",
+			"Config": {}
+		},
+		"NetworkMode": "bracket_bracket_lan",
+		"PortBindings": {
+			"8400/tcp": [
+				{
+					"HostIp": "",
+					"HostPort": "8400"
+				}
+			]
+		},
+		"RestartPolicy": {
+			"Name": "unless-stopped",
+			"MaximumRetryCount": 0
+		},
+		"AutoRemove": false,
+		"VolumeDriver": "",
+		"VolumesFrom": null,
+		"ConsoleSize": [
+			0,
+			0
+		],
+		"CapAdd": null,
+		"CapDrop": null,
+		"CgroupnsMode": "host",
+		"Dns": [],
+		"DnsOptions": [],
+		"DnsSearch": [],
+		"ExtraHosts": [],
+		"GroupAdd": null,
+		"IpcMode": "private",
+		"Cgroup": "",
+		"Links": null,
+		"OomScoreAdj": 0,
+		"PidMode": "",
+		"Privileged": false,
+		"PublishAllPorts": false,
+		"ReadonlyRootfs": false,
+		"SecurityOpt": null,
+		"UTSMode": "",
+		"UsernsMode": "",
+		"ShmSize": 67108864,
+		"Runtime": "runc",
+		"Isolation": "",
+		"CpuShares": 0,
+		"Memory": 0,
+		"NanoCpus": 0,
+		"CgroupParent": "",
+		"BlkioWeight": 0,
+		"BlkioWeightDevice": null,
+		"BlkioDeviceReadBps": null,
+		"BlkioDeviceWriteBps": null,
+		"BlkioDeviceReadIOps": null,
+		"BlkioDeviceWriteIOps": null,
+		"CpuPeriod": 0,
+		"CpuQuota": 0,
+		"CpuRealtimePeriod": 0,
+		"CpuRealtimeRuntime": 0,
+		"CpusetCpus": "",
+		"CpusetMems": "",
+		"Devices": null,
+		"DeviceCgroupRules": null,
+		"DeviceRequests": null,
+		"MemoryReservation": 0,
+		"MemorySwap": 0,
+		"MemorySwappiness": null,
+		"OomKillDisable": false,
+		"PidsLimit": null,
+		"Ulimits": null,
+		"CpuCount": 0,
+		"CpuPercent": 0,
+		"IOMaximumIOps": 0,
+		"IOMaximumBandwidth": 0,
+		"MaskedPaths": [
+			"/proc/asound",
+			"/proc/acpi",
+			"/proc/kcore",
+			"/proc/keys",
+			"/proc/latency_stats",
+			"/proc/timer_list",
+			"/proc/timer_stats",
+			"/proc/sched_debug",
+			"/proc/scsi",
+			"/sys/firmware",
+			"/sys/devices/virtual/powercap"
+		],
+		"ReadonlyPaths": [
+			"/proc/bus",
+			"/proc/fs",
+			"/proc/irq",
+			"/proc/sys",
+			"/proc/sysrq-trigger"
+		]
+	},
+	"GraphDriver": {
+		"Data": null,
+		"Name": "overlayfs"
+	},
+	"Mounts": [
+		{
+			"Type": "bind",
+			"Source": "C:\\Users\\Ryan\\Documents\\Development\\bracket\\backend\\static",
+			"Destination": "/app/static",
+			"Mode": "rw",
+			"RW": true,
+			"Propagation": "rprivate"
+		}
+	],
+	"Config": {
+		"Hostname": "fd2f5ed019fe",
+		"Domainname": "",
+		"User": "bracket",
+		"AttachStdin": false,
+		"AttachStdout": true,
+		"AttachStderr": true,
+		"ExposedPorts": {
+			"8400/tcp": {}
+		},
+		"Tty": false,
+		"OpenStdin": false,
+		"StdinOnce": false,
+		"Env": [
+			"PG_DSN=postgresql://bracket_dev:bracket_dev@postgres:5432/bracket_dev",
+			"ENVIRONMENT=DEVELOPMENT",
+			"CORS_ORIGINS=http://localhost:3000",
+			"PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+			"LANG=C.UTF-8",
+			"GPG_KEY=7169605F62C751356D054A26A821E680E5FA6305",
+			"PYTHON_VERSION=3.12.0",
+			"PYTHON_PIP_VERSION=23.2.1",
+			"PYTHON_GET_PIP_URL=https://github.com/pypa/get-pip/raw/4cfa4081d27285bda1220a62a5ebf5b4bd749cdb/public/get-pip.py",
+			"PYTHON_GET_PIP_SHA256=9cc01665956d22b3bf057ae8287b035827bfd895da235bcea200ab3b811790b6"
+		],
+		"Cmd": [
+			"/bin/sh",
+			"-c",
+			"pipenv run gunicorn     -k uvicorn.workers.UvicornWorker     bracket.app:app     --bind 0.0.0.0:8400     --workers 1"
+		],
+		"Healthcheck": {
+			"Test": [
+				"CMD-SHELL",
+				"wget --spider http://localhost:8400 || exit 1"
+			],
+			"Interval": 15000000000,
+			"Timeout": 5000000000,
+			"Retries": 5
+		},
+		"Image": "ghcr.io/evroon/bracket-backend",
+		"Volumes": null,
+		"WorkingDir": "/app",
+		"Entrypoint": null,
+		"OnBuild": null,
+		"Labels": {
+			"com.docker.compose.config-hash": "bbe0ee64bd29dee6e1461a2a39ff75c34a691597c73843ea90f67d350d079e2e",
+			"com.docker.compose.container-number": "1",
+			"com.docker.compose.depends_on": "postgres:service_started:false",
+			"com.docker.compose.image": "sha256:77d5b4ea3c3345e07b02bcd6c7aa0534c4f9b4cdcee2842445e42859a4898abd",
+			"com.docker.compose.oneoff": "False",
+			"com.docker.compose.project": "bracket",
+			"com.docker.compose.project.config_files": "C:\\Users\\Ryan\\Documents\\Development\\bracket\\docker-compose.yml",
+			"com.docker.compose.project.working_dir": "C:\\Users\\Ryan\\Documents\\Development\\bracket",
+			"com.docker.compose.service": "bracket-backend",
+			"com.docker.compose.version": "2.32.4",
+			"org.opencontainers.image.created": "2025-02-01T13:12:44.398Z",
+			"org.opencontainers.image.description": "Selfhosted tournament system",
+			"org.opencontainers.image.licenses": "AGPL-3.0",
+			"org.opencontainers.image.revision": "1a0747011388a336576906ce86e575710f620591",
+			"org.opencontainers.image.source": "https://github.com/evroon/bracket",
+			"org.opencontainers.image.title": "bracket",
+			"org.opencontainers.image.url": "https://github.com/evroon/bracket",
+			"org.opencontainers.image.version": "v2.0.3"
+		}
+	},
+	"NetworkSettings": {
+		"Bridge": "",
+		"SandboxID": "2046900d9a69712e84eea36f78994c62a676d429f4aab9a0f7571170701b994d",
+		"SandboxKey": "/var/run/docker/netns/2046900d9a69",
+		"Ports": {
+			"8400/tcp": [
+				{
+					"HostIp": "0.0.0.0",
+					"HostPort": "8400"
+				}
+			]
+		},
+		"HairpinMode": false,
+		"LinkLocalIPv6Address": "",
+		"LinkLocalIPv6PrefixLen": 0,
+		"SecondaryIPAddresses": null,
+		"SecondaryIPv6Addresses": null,
+		"EndpointID": "",
+		"Gateway": "",
+		"GlobalIPv6Address": "",
+		"GlobalIPv6PrefixLen": 0,
+		"IPAddress": "",
+		"IPPrefixLen": 0,
+		"IPv6Gateway": "",
+		"MacAddress": "",
+		"Networks": {
+			"bracket_bracket_lan": {
+				"IPAMConfig": null,
+				"Links": null,
+				"Aliases": [
+					"bracket-backend",
+					"bracket-backend"
+				],
+				"MacAddress": "02:42:ac:1a:00:03",
+				"DriverOpts": null,
+				"NetworkID": "104187d41e4da420658b4d9fb5a1480e750fc5fa2384b0eda49121a4c1a4e77e",
+				"EndpointID": "ba58db4679518f5740a74b566110cdd957605496582d922e8db2782540d94c66",
+				"Gateway": "172.26.0.1",
+				"IPAddress": "172.26.0.3",
+				"IPPrefixLen": 16,
+				"IPv6Gateway": "",
+				"GlobalIPv6Address": "",
+				"GlobalIPv6PrefixLen": 0,
+				"DNSNames": [
+					"bracket-backend",
+					"fd2f5ed019fe"
+				]
+			}
+		}
+	},
+	"Ports": [
+		{
+			"IP": "0.0.0.0",
+			"PrivatePort": 8400,
+			"PublicPort": 8400,
+			"Type": "tcp"
+		}
+	]
+}
