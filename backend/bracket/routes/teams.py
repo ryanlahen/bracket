@@ -1,3 +1,4 @@
+import csv
 import os
 from uuid import uuid4
 
@@ -9,6 +10,7 @@ from heliclockter import datetime_utc
 from bracket.database import database
 from bracket.logic.subscriptions import check_requirement
 from bracket.logic.teams import get_team_logo_path
+from bracket.models.db.player import PlayerBody
 from bracket.models.db.team import (
     FullTeamWithPlayers,
     Team,
@@ -16,6 +18,7 @@ from bracket.models.db.team import (
     TeamInsertable,
     TeamMultiBody,
 )
+from bracket.models.db.tournament import Tournament
 from bracket.models.db.user import UserPublic
 from bracket.routes.auth import (
     user_authenticated_for_tournament,
@@ -27,8 +30,13 @@ from bracket.routes.models import (
     SuccessResponse,
     TeamsWithPlayersResponse,
 )
-from bracket.routes.util import team_dependency, team_with_players_dependency
+from bracket.routes.util import (
+    disallow_archived_tournament,
+    team_dependency,
+    team_with_players_dependency,
+)
 from bracket.schema import players_x_teams, teams
+from bracket.sql.players import get_all_players_in_tournament, insert_player
 from bracket.sql.teams import (
     get_team_by_id,
     get_team_count,
@@ -87,6 +95,7 @@ async def update_team_by_id(
     tournament_id: TournamentId,
     team_body: TeamBody,
     _: UserPublic = Depends(user_authenticated_for_tournament),
+    __: Tournament = Depends(disallow_archived_tournament),
     team: Team = Depends(team_dependency),
 ) -> SingleTeamResponse:
     await check_foreign_keys_belong_to_tournament(team_body, tournament_id)
@@ -117,6 +126,7 @@ async def update_team_logo(
     tournament_id: TournamentId,
     file: UploadFile | None = None,
     _: UserPublic = Depends(user_authenticated_for_tournament),
+    __: Tournament = Depends(disallow_archived_tournament),
     team: Team = Depends(team_dependency),
 ) -> SingleTeamResponse:
     old_logo_path = await get_team_logo_path(tournament_id, team.id)
@@ -153,6 +163,7 @@ async def update_team_logo(
 async def delete_team(
     tournament_id: TournamentId,
     _: UserPublic = Depends(user_authenticated_for_tournament),
+    __: Tournament = Depends(disallow_archived_tournament),
     team: FullTeamWithPlayers = Depends(team_with_players_dependency),
 ) -> SuccessResponse:
     with check_foreign_key_violation(
@@ -172,6 +183,7 @@ async def create_team(
     team_to_insert: TeamBody,
     tournament_id: TournamentId,
     user: UserPublic = Depends(user_authenticated_for_tournament),
+    _: Tournament = Depends(disallow_archived_tournament),
 ) -> SingleTeamResponse:
     await check_foreign_keys_belong_to_tournament(team_to_insert, tournament_id)
 
@@ -198,20 +210,35 @@ async def create_multiple_teams(
     team_body: TeamMultiBody,
     tournament_id: TournamentId,
     user: UserPublic = Depends(user_authenticated_for_tournament),
+    _: Tournament = Depends(disallow_archived_tournament),
 ) -> SuccessResponse:
-    team_names = [team.strip() for team in team_body.names.split("\n") if len(team) > 0]
-    existing_teams = await get_teams_with_members(tournament_id)
-    check_requirement(existing_teams, user, "max_teams", additions=len(team_names))
+    reader = list(csv.reader(team_body.names.split("\n"), delimiter=","))
+    teams_and_players = [
+        (row[0], [p for p in row[1:] if len(p) > 0] if len(row) > 1 else [])
+        for row in reader
+        if len(row) > 0
+    ]
+    players = [player for row in teams_and_players for player in row[1]]
 
-    for team_name in team_names:
-        await database.execute(
-            query=teams.insert(),
-            values=TeamInsertable(
-                name=team_name,
-                active=team_body.active,
-                created=datetime_utc.now(),
-                tournament_id=tournament_id,
-            ).model_dump(),
-        )
+    existing_teams = await get_teams_with_members(tournament_id)
+    existing_players = await get_all_players_in_tournament(tournament_id)
+
+    check_requirement(existing_teams, user, "max_teams", additions=len(reader))
+    check_requirement(existing_players, user, "max_players", additions=len(players))
+
+    async with database.transaction():
+        for team_name, players in teams_and_players:
+            await database.execute(
+                query=teams.insert(),
+                values=TeamInsertable(
+                    name=team_name,
+                    active=team_body.active,
+                    created=datetime_utc.now(),
+                    tournament_id=tournament_id,
+                ).model_dump(),
+            )
+            for player in players:
+                player_body = PlayerBody(name=player, active=team_body.active)
+                await insert_player(player_body, tournament_id)
 
     return SuccessResponse()

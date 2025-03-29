@@ -1,9 +1,10 @@
 import aiofiles.os
 import aiohttp
+import pytest
 
 from bracket.database import database
 from bracket.models.db.team import Team
-from bracket.schema import teams
+from bracket.schema import players, teams
 from bracket.utils.db import fetch_one_parsed_certain
 from bracket.utils.dummy_records import DUMMY_MOCK_TIME, DUMMY_TEAM1
 from bracket.utils.http import HTTPMethod
@@ -12,6 +13,7 @@ from tests.integration_tests.models import AuthContext
 from tests.integration_tests.sql import assert_row_count_and_clear, inserted_team
 
 
+@pytest.mark.asyncio(loop_scope="session")
 async def test_teams_endpoint(
     startup_and_shutdown_uvicorn_server: None, auth_context: AuthContext
 ) -> None:
@@ -41,6 +43,7 @@ async def test_teams_endpoint(
         }
 
 
+@pytest.mark.asyncio(loop_scope="session")
 async def test_create_team(
     startup_and_shutdown_uvicorn_server: None, auth_context: AuthContext
 ) -> None:
@@ -50,17 +53,20 @@ async def test_create_team(
     await assert_row_count_and_clear(teams, 1)
 
 
+@pytest.mark.asyncio(loop_scope="session")
 async def test_create_teams(
     startup_and_shutdown_uvicorn_server: None, auth_context: AuthContext
 ) -> None:
-    body = {"names": "Team -1\nTeam -2", "active": True}
+    body = {"names": "Team -1,Player 42,Player 43\nTeam -2,", "active": True}
     response = await send_tournament_request(
         HTTPMethod.POST, "teams_multi", auth_context, None, body
     )
     assert response["success"] is True
     await assert_row_count_and_clear(teams, 2)
+    await assert_row_count_and_clear(players, 3)
 
 
+@pytest.mark.asyncio(loop_scope="session")
 async def test_delete_team(
     startup_and_shutdown_uvicorn_server: None, auth_context: AuthContext
 ) -> None:
@@ -76,6 +82,7 @@ async def test_delete_team(
         await assert_row_count_and_clear(teams, 0)
 
 
+@pytest.mark.asyncio(loop_scope="session")
 async def test_update_team(
     startup_and_shutdown_uvicorn_server: None, auth_context: AuthContext
 ) -> None:
@@ -95,6 +102,7 @@ async def test_update_team(
         await assert_row_count_and_clear(teams, 1)
 
 
+@pytest.mark.asyncio(loop_scope="session")
 async def test_update_team_invalid_players(
     startup_and_shutdown_uvicorn_server: None, auth_context: AuthContext
 ) -> None:
@@ -108,6 +116,7 @@ async def test_update_team_invalid_players(
         assert response == {"detail": "Could not find Player(s) with ID {-1}"}
 
 
+@pytest.mark.asyncio(loop_scope="session")
 async def test_team_upload_and_remove_logo(
     startup_and_shutdown_uvicorn_server: None, auth_context: AuthContext
 ) -> None:

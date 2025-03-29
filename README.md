@@ -61,7 +61,7 @@ It has the following features:
 - Create **multiple clubs**, with **multiple tournaments** per club.
 - **Swiss tournaments** can be handled dynamically, with automatic scheduling of matches.
 
-<img alt="" src="docs/static/img/bracket-screenshot-design.png" width="100%" />
+<img alt="" src="docs/content/img/bracket-screenshot-design.png" width="100%" />
 
 <p align="center">
 <a href="https://docs.bracketapp.nl"><strong>Explore the Bracket docs&nbsp;&nbsp;▶</strong></a>
@@ -92,10 +92,8 @@ sudo docker exec bracket-backend pipenv run ./cli.py create-dev-db
 
 See also the [quickstart docs](https://docs.bracketapp.nl/docs/running-bracket/quickstart).
 
-# Development setup
-Read the [development docs](https://docs.bracketapp.nl/docs/community/development) for how to run Bracket for development.
-
-Prerequisites are `yarn`, `postgresql` and `pipenv` to run the frontend, database and backend.
+# Usage
+Read the [usage guide](https://docs.bracketapp.nl/docs/usage/guide) for how to organize a tournament in Bracket from start to finish.
 
 # Configuration
 Read the [configuration docs](https://docs.bracketapp.nl/docs/running-bracket/configuration) for how to configure Bracket.
@@ -110,6 +108,11 @@ Read the [deployment docs](https://docs.bracketapp.nl/docs/deployment) for how t
 
 Bracket can be run in Docker or by itself (using `pipenv` and `yarn`).
 
+# Development setup
+Read the [development docs](https://docs.bracketapp.nl/docs/community/development) for how to run Bracket for development.
+
+Prerequisites are `yarn`, `postgresql` and `pipenv` to run the frontend, database and backend.
+
 # Translations
 Based on your browser settings, your language should be automatically detected and loaded. For now,
 there's no manual way of choosing a different language.
@@ -119,10 +122,10 @@ To add/refine translations, [Crowdin](https://crowdin.com/project/bracket) is us
 See the [docs](https://docs.bracketapp.nl/docs/community/contributing/#translating) for more information.
 
 # More screenshots
-<img alt="" src="docs/static/img/schedule_preview.png" width="50%" /><img alt=""
-src="docs/static/img/planning_preview.png" width="50%" /> <img alt=""
-src="docs/static/img/builder_preview.png" width="50%" /><img alt=""
-src="docs/static/img/standings_preview.png" width="50%" />
+<img alt="" src="docs/content/img/schedule_preview.png" width="50%" /><img alt=""
+src="docs/content/img/planning_preview.png" width="50%" /> <img alt=""
+src="docs/content/img/builder_preview.png" width="50%" /><img alt=""
+src="docs/content/img/standings_preview.png" width="50%" />
 
 # Help
 If you're having trouble getting Bracket up and running, or have a question about usage or configuration, feel free to ask.
