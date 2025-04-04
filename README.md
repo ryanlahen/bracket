@@ -147,6 +147,13 @@ See the [contribution docs](https://docs.bracketapp.nl/docs/community/contributi
 <table>
 <tr>
     <td align="center">
+        <a href="https://github.com/ryanlahen">
+            <img src="https://avatars.githubusercontent.com/u/26985299?v=4" width="100;" alt="ryanlahen"/>
+            <br />
+            <sub><b>Ryan Laheney</b></sub>
+        </a>
+    </td>
+    <td align="center">
         <a href="https://github.com/evroon">
             <img src="https://avatars.githubusercontent.com/u/11857441?v=4" width="100;" alt="evroon"/>
             <br />
@@ -180,15 +187,15 @@ See the [contribution docs](https://docs.bracketapp.nl/docs/community/contributi
             <br />
             <sub><b>SevicheCC</b></sub>
         </a>
-    </td>
+    </td></tr>
+<tr>
     <td align="center">
         <a href="https://github.com/IzStriker">
             <img src="https://avatars.githubusercontent.com/u/44909896?v=4" width="100;" alt="IzStriker"/>
             <br />
             <sub><b>IzStriker</b></sub>
         </a>
-    </td></tr>
-<tr>
+    </td>
     <td align="center">
         <a href="https://github.com/babeuh">
             <img src="https://avatars.githubusercontent.com/u/60193302?v=4" width="100;" alt="babeuh"/>
